@@ -16,7 +16,7 @@
  * @param CustomStatusText
  * @text カスタムテキスト
  * @desc カスタムステータスウィンドウに表示するテキストを指定してください。
- * @type note
+ * @type multiline_string
  * @default ""
  *
  * @param ResizeImageFlag
