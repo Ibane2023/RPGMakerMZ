@@ -1,0 +1,5 @@
+typings/*
+scripts/*
+.vscode/*
+
+node_modules

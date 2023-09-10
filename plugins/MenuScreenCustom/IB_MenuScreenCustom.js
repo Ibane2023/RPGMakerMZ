@@ -37,23 +37,6 @@
  * @value right
  * @default center
  * 
- * @param ShowActorInfo
- * @text アクター情報表示
- * @desc アクターのHP、MP、TPを表示するかどうかを指定してください。（true/false）
- * @type boolean
- * @default true
- * 
- * @param ActorInfoX
- * @text アクター情報X座標
- * @desc アクター情報のX座標を指定してください。
- * @type number
- * @default 0
- * 
- * @param ActorInfoY
- * @text アクター情報Y座標
- * @desc アクター情報のY座標を指定してください。
- * @type number
- * @default 0
  * 
  * @help
  * このプラグインは、カスタムステータスウィンドウを追加し、
@@ -69,31 +52,20 @@
  * イベントコマンドやプラグインコマンドを使用して画面に表示してください。
  * ウィンドウを表示する際に、画像ファイルのパスとテキスト配置を指定できます。
  * 
- * 例:
- * カスタムステータスウィンドウを表示
- *  - プラグインコマンド: ShowCustomStatusWindow imagePath left
- *  - プラグインコマンド: ShowCustomStatusWindow imagePath center
- *  - プラグインコマンド: ShowCustomStatusWindow imagePath right
- * 
  * imagePath には表示したい画像ファイルのパスを指定します。
  * 画像配置として 'left', 'center', 'right' のいずれかを指定できます。
  * カスタムステータスウィンドウは指定された画像とテキストを表示します。
- * 
- * アクター情報の表示を有効にするには、プラグインパラメータ "ShowActorInfo" を true に設定してください。
- * "ActorInfoX" と "ActorInfoY" でアクター情報の位置を調整できます。
  * 
  */
 (() => {
 	"use strict";
 	const pluginName = "IB_MenuScreenCustom";
+	
 
 	const parameters = PluginManager.parameters(pluginName);
 	const ResizeImageFlag = parameters.ResizeImageFlag === "true";
 	const customStatusText = String(parameters.CustomStatusText || "");
 	const imageAlignment = parameters.ImageAlignment || "center";
-	const showActorInfo = !!Boolean(parameters.ShowActorInfo);
-	const actorInfoX = Number(parameters.ActorInfoX || 0);
-	const actorInfoY = Number(parameters.ActorInfoY || 0);
 
 	Scene_Menu.prototype.create = function () {
 		Scene_MenuBase.prototype.create.call(this);
@@ -127,11 +99,6 @@
 		this.drawCustomImage();
 		// 他のステータス情報の描画などの処理を追加
 		this.drawCustomText(); // カスタムテキストを描画
-
-		// アクター情報の表示
-		if (showActorInfo) {
-			this.drawActorInfo(actorInfoX, actorInfoY);
-		}
 	};
 
 	Window_CustomStatus.prototype.drawCustomImage = function () {
@@ -166,14 +133,6 @@
 		}
 		
 
-	};
-
-	// アクター情報を描画する
-	Window_CustomStatus.prototype.drawActorInfo = function (x, y) {
-		const actor = $gameParty.members()[0]; // ここでは 1 人目のアクターを対象にしますが、適切なアクターを選択してください。
-		if (actor) {
-			this.placeBasicGauges(actor, x, y);
-		}
 	};
 
 	// カスタムテキストを描画

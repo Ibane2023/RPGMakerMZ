@@ -1,0 +1,15 @@
+{
+  "name": "mz-javascript",
+  "version": "1.0.0",
+  "description": "jsファイルをゲームプロジェクトの js/plugins ディレクトリ下において RPGツクールMZのプラグイン管理から読み込んでください",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy-plugin": "node scripts/copy-plugins.js"
+  },
+  "author": "ibane",
+  "license": "MIT",
+  "devDependencies": {
+    "cpx": "^1.5.0"
+  }
+}
