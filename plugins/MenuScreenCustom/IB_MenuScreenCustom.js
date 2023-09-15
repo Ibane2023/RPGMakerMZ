@@ -11,7 +11,7 @@
  * @desc カスタムステータスウィンドウに表示する画像ファイルのパスを指定してください。
  * @type file
  * @dir img/pictures
- * @default default.png
+ * @default 
  * 
  * @param CustomStatusText
  * @text カスタムテキスト
